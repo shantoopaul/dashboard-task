@@ -1,16 +1,18 @@
 import { createBrowserRouter } from "react-router";
+import Login from "../Pages/Login";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Login</h1>,
+    element: <Login />,
   },
   {
     path: "/dashboard",
     element: (
-      <div>
+      <PrivateRoute>
         <h1>Dashboard</h1>
-      </div>
+      </PrivateRoute>
     ),
   },
   {

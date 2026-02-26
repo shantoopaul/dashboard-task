@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
-body {
+@theme {
+  --color-green1: #5ebd91;
+  --color-green2: #0e623e;
+  --color-green3: #13452c;
+  --color-bg: #f7f7f7;
+}
+
+/* body {
   width: 100vw;
   height: 100vh;
   position: relative;
@@ -17,4 +24,4 @@ body::before {
   background-size: contain;
   background-position: center;
   z-index: -1;
-}
+} */
