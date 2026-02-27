@@ -7,21 +7,15 @@
   --color-bg-gray: #f7f7f7;
 }
 
-/* body {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-}
+.card {
+  width: 300px;
+  padding: 24px;
+  border-radius: 20px;
+  color: white;
 
-body::before {
-  content: "";
-  position: absolute;
-  width: 100dvw;
-  height: 100dvh;
-  inset: 0;
-  background-image: url("/demo.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  z-index: -1;
-} */
+  /* Gradient background */
+  background: linear-gradient(135deg, #1f5f3a 0%, #2e8b57 50%, #3cb371 100%);
+
+  /* Optional soft shadow like UI cards */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
