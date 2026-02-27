@@ -1,6 +1,7 @@
 import DashTopStuff from "../Components/DashTopStuff";
 import MetricsCard from "../Components/MetricsCard";
 import ProjectAnalysis from "../Components/ProjectAnalytics";
+import Projects from "../Components/Projects";
 import ReminderCard from "../Components/ReminderCard";
 
 const Dashboard = () => {
@@ -26,6 +27,8 @@ const Dashboard = () => {
         />
         <ProjectAnalysis />
         <ReminderCard />
+        <Projects />
+        <ProjectAnalysis />
       </div>
     </>
   );
