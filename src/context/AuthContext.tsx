@@ -2,13 +2,20 @@ import { createContext } from "react";
 
 interface User {
   id: number;
+  name: string;
   email: string;
+  status: string;
+  joinDate: string;
   token: string;
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (userData: User) => void;
+  login: (userData: {
+    id: number;
+    email: string;
+    token: string;
+  }) => Promise<void>;
   logout: () => void;
 }
 

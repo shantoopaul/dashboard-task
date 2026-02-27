@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { AuthContext, type User } from "./AuthContext";
+import { getUserById } from "../api/user";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -11,9 +12,24 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
-  const login = (userData: User) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
+  const login = async (userData: {
+    id: number;
+    email: string;
+    token: string;
+  }) => {
+    try {
+      const profile = await getUserById(userData.id);
+
+      const fullUser: User = {
+        ...profile,
+        token: userData.token,
+      };
+
+      setUser(fullUser);
+      localStorage.setItem("user", JSON.stringify(fullUser));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const logout = () => {

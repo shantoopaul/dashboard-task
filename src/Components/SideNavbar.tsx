@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Hooks/useAuth";
 // @ts-expect-error ts-ignore
 import DashboardIcon from "../assets/dashboard.svg?react";
 // @ts-expect-error ts-ignore
@@ -50,9 +52,17 @@ const generalMenuItems: MenuItemType[] = [
   { icon: "logout", label: "Logout", path: "/logout" },
 ];
 
-const MenuItem = ({ item }: { item: MenuItemType }) => {
+const MenuItem = ({
+  item,
+  onLogout,
+}: {
+  item: MenuItemType;
+  onLogout?: () => void;
+}) => {
   const Icon = icons[item.icon];
   const isActive = item.active;
+
+  const isLogout = item.label === "Logout";
 
   return (
     <li className="relative">
@@ -60,31 +70,51 @@ const MenuItem = ({ item }: { item: MenuItemType }) => {
         <span className="absolute -left-6 top-1/2 -translate-y-1/2 h-12 w-2 bg-green2 rounded-r-full" />
       )}
 
-      <Link
-        to={item.path}
-        className={`w-full flex items-center justify-between py-2 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green2
-          ${isActive ? "font-semibold" : "text-gray-400 hover:bg-gray-200"}`}
-        aria-current={isActive ? "page" : undefined}
-      >
-        <span className="flex items-center justify-center gap-3">
-          <Icon
-            className={`w-6 h-6 ${isActive ? "text-green3" : "text-gray-400"}`}
-          />
-          <span className="text-xl">{item.label}</span>
-        </span>
-
-        {item.badge && (
-          <span className="text-[10px] px-2 py-0.5 rounded-md bg-green3 text-white">
-            {item.badge}
+      {isLogout ? (
+        <button
+          onClick={onLogout}
+          className="w-full flex items-center justify-between py-2 text-gray-400 hover:bg-gray-200"
+        >
+          <span className="flex items-center gap-3">
+            <Icon className="w-6 h-6 text-gray-400" />
+            <span className="text-xl">{item.label}</span>
           </span>
-        )}
-      </Link>
+        </button>
+      ) : (
+        <Link
+          to={item.path}
+          className={`w-full flex items-center justify-between py-2 
+          ${isActive ? "font-semibold" : "text-gray-400 hover:bg-gray-200"}`}
+        >
+          <span className="flex items-center gap-3">
+            <Icon
+              className={`w-6 h-6 ${
+                isActive ? "text-green3" : "text-gray-400"
+              }`}
+            />
+            <span className="text-xl">{item.label}</span>
+          </span>
+
+          {item.badge && (
+            <span className="text-[10px] px-2 py-0.5 rounded-md bg-green3 text-white">
+              {item.badge}
+            </span>
+          )}
+        </Link>
+      )}
     </li>
   );
 };
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <>
@@ -126,12 +156,15 @@ const Sidebar = () => {
           <p className="text-xs text-gray-400 uppercase">General</p>
           <ul className="mt-2 space-y-2">
             {generalMenuItems.map((item) => (
-              <MenuItem key={item.label} item={item} />
+              <MenuItem
+                key={item.label}
+                item={item}
+                onLogout={item.label === "Logout" ? handleLogout : undefined}
+              />
             ))}
           </ul>
         </nav>
 
-        {/* Ad Box */}
         <div
           className="bg-[url('/mobileAdBg.png')] bg-cover bg-center rounded-2xl p-6 text-white"
           role="complementary"
