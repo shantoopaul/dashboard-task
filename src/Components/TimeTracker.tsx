@@ -42,7 +42,7 @@ const TimeTracker = () => {
   };
 
   return (
-    <div className="col-span-3 rounded-2xl overflow-hidden relative">
+    <div className="col-span-3 row-span-3 rounded-2xl overflow-hidden relative">
       <img
         src="/timeTrackerBg.png"
         alt="Time Tracker Background"
@@ -51,25 +51,25 @@ const TimeTracker = () => {
 
       <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px]" />
 
-      <div className="relative z-10 flex flex-col justify-between h-full p-6 text-white">
+      <div className="relative z-10 flex flex-col justify-between h-full p-4 text-white">
         <h3 className="text-xl font-medium">Time Tracker</h3>
 
-        <div className="flex flex-col items-center gap-6">
-          <div className="text-5xl font-semibold tracking-widest">
+        <div className="flex flex-col items-center gap-4">
+          <div className="text-5xl font-semibold tracking-tight leading-none">
             {formatTime(seconds)}
           </div>
 
           <div className="flex items-center gap-4">
             <button
               onClick={handleStartPause}
-              className="w-14 h-14 flex items-center justify-center rounded-full bg-white text-green-600 shadow-md hover:scale-105 transition"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-green-600 shadow-md hover:scale-105 transition"
             >
               {isRunning ? <Pause size={22} /> : <Play size={22} />}
             </button>
 
             <button
               onClick={handleStop}
-              className="w-14 h-14 flex items-center justify-center rounded-full bg-red-500 text-white shadow-md hover:scale-105 transition"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500 text-white shadow-md hover:scale-105 transition"
             >
               <Square size={20} />
             </button>

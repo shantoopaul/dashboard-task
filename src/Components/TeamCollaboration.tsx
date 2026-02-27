@@ -42,17 +42,17 @@ const statusStyles: Record<Status, string> = {
 
 const TeamCollaboration: React.FC = () => {
   return (
-    <div className="bg-white flex flex-col items-center justify-center p-4 col-span-5 rounded-2xl">
+    <div className="bg-white flex flex-col items-center justify-center p-4 col-span-5 row-span-5 rounded-2xl">
       {/* w-full max-w-2xl bg-white rounded-2xl p-6 */}
-      <div className="flex items-center justify-between w-full mb-6">
-        <h2 className="text-xl font-semibold text-gray-800">
+      <div className="flex items-center justify-between w-full mb-4">
+        <h3 className="text-xl font-medium text-gray-800">
           Team Collaboration
-        </h2>
+        </h3>
         <button className="flex items-center gap-2 border border-green2 text-green2 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-green-50 transition">
           + Add Member
         </button>
       </div>
-      <div className="space-y-5 w-full">
+      <div className="space-y-4 w-full">
         {members.map((member) => (
           <div key={member.id} className="flex items-center justify-between">
             <div className="flex items-center gap-4">

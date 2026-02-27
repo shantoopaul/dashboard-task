@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <>
       <DashTopStuff />
-      <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 auto-rows-[48px]">
         <MetricsCard
           title="Total Projects"
           count={24}

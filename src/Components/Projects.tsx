@@ -3,7 +3,7 @@ import { Plus } from "lucide-react";
 type ProjectItem = {
   title: string;
   dueDate: string;
-  icon: string; // path from public folder
+  icon: string;
 };
 
 const projects: ProjectItem[] = [
@@ -36,7 +36,7 @@ const projects: ProjectItem[] = [
 
 const Projects = () => {
   return (
-    <div className="col-span-3 rounded-2xl bg-white p-4">
+    <div className="col-span-3 row-span-6 rounded-2xl bg-white p-4">
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-xl font-medium text-gray-800">Project</h3>
 

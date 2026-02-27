@@ -22,7 +22,7 @@ const MetricsCard = ({
   return (
     <section
       className={`
-        col-span-3 rounded-2xl p-4 transition-all duration-300
+        col-span-3 row-span-3 rounded-2xl p-4 transition-all duration-300
         ${
           isPrimary
             ? "bg-linear-to-b from-green3 to-green2 text-white"

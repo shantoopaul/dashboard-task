@@ -33,7 +33,7 @@ const ProjectAnalytics: React.FC = () => {
   const maxValue = Math.max(...data.map((d) => d.value));
 
   return (
-    <div className="bg-white rounded-3xl p-4 col-span-6 flex flex-col">
+    <div className="bg-white rounded-3xl p-4 col-span-6 row-span-4 flex flex-col">
       <h3 className="text-xl font-medium text-gray-800 mb-2">
         Project Analytics
       </h3>
