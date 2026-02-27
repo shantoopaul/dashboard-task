@@ -26,7 +26,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
   const totalProgress = Math.round(((completed + inProgress) / total) * 100);
 
   return (
-    <div className="w-[320px] rounded-2xl bg-gray-100 p-6 shadow-sm">
+    <div className="col-span-4 rounded-2xl bg-white p-6 shadow-sm">
       <h2 className="mb-6 text-lg font-semibold text-gray-800">
         Project Progress
       </h2>
