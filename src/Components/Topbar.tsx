@@ -6,7 +6,7 @@ const Topbar = () => {
 
   return (
     <header className="flex items-center justify-between w-full mb-2 rounded-2xl  bg-bg-gray px-4 py-5 ">
-      <div className="relative w-full max-w-md group">
+      <div className="relative w-full max-w-sm group">
         <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
           <Search className="h-6 w-6 text-gray-800 group-focus-within:text-green2 transition-colors" />
         </div>

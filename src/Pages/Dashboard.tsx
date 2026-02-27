@@ -1,7 +1,9 @@
+import DashTopStuff from "../Components/DashTopStuff";
+
 const Dashboard = () => {
   return (
     <>
-      <h1>dashboard</h1>
+      <DashTopStuff />
     </>
   );
 };
