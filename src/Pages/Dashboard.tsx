@@ -1,6 +1,7 @@
 import DashTopStuff from "../Components/DashTopStuff";
 import MetricsCard from "../Components/MetricsCard";
 import ProjectAnalysis from "../Components/ProjectAnalytics";
+import ReminderCard from "../Components/ReminderCard";
 
 const Dashboard = () => {
   return (
@@ -24,6 +25,7 @@ const Dashboard = () => {
           statusText="On Discuss"
         />
         <ProjectAnalysis />
+        <ReminderCard />
       </div>
     </>
   );

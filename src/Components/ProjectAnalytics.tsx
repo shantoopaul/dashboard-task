@@ -35,10 +35,10 @@ const ProjectAnalytics: React.FC = () => {
   const maxValue = Math.max(...data.map((d) => d.value));
 
   return (
-    <div className="bg-white rounded-3xl p-8 col-span-2 flex flex-col">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+    <div className="bg-white rounded-3xl p-6 col-span-2 flex flex-col">
+      <h3 className="text-xl font-medium text-gray-800 mb-2">
         Project Analytics
-      </h2>
+      </h3>
 
       <div className="flex-1 flex items-end justify-between">
         {data.map((item, index) => {
