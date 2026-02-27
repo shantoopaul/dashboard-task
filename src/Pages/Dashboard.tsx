@@ -3,6 +3,7 @@ import MetricsCard from "../Components/MetricsCard";
 import ProjectAnalysis from "../Components/ProjectAnalytics";
 import Projects from "../Components/Projects";
 import ReminderCard from "../Components/ReminderCard";
+import TeamCollaboration from "../Components/TeamCollaboration";
 
 const Dashboard = () => {
   return (
@@ -28,7 +29,7 @@ const Dashboard = () => {
         <ProjectAnalysis />
         <ReminderCard />
         <Projects />
-        <ProjectAnalysis />
+        <TeamCollaboration />
       </div>
     </>
   );

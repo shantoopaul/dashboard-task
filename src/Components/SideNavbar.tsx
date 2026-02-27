@@ -128,7 +128,7 @@ const Sidebar = () => {
       </button>
 
       <aside
-        className={`fixed lg:static rounded-2xl inset-y-0 left-0 z-40 w-64 bg-bg-gray p-6 flex flex-col justify-between gap-12 transform transition-transform duration-300 
+        className={`fixed lg:static rounded-2xl top-4 left-4 z-40 w-64 bg-bg-gray p-6 flex flex-col gap-12 transform transition-transform duration-300 
         ${isOpen ? "translate-x-0" : "-translate-x-full"} 
         lg:translate-x-0`}
         aria-label="Sidebar Navigation"
@@ -166,7 +166,7 @@ const Sidebar = () => {
         </nav>
 
         <div
-          className="bg-[url('/mobileAdBg.png')] bg-cover bg-center rounded-2xl p-6 text-white"
+          className="bg-[url('/mobileAdBg.png')] bg-cover bg-center rounded-2xl p-6 text-white mt-auto"
           role="complementary"
           aria-label="Mobile App Promotion"
         >
