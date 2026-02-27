@@ -1,5 +1,6 @@
 import DashTopStuff from "../Components/DashTopStuff";
 import MetricsCard from "../Components/MetricsCard";
+import ProjectAnalysis from "../Components/ProjectAnalytics";
 
 const Dashboard = () => {
   return (
@@ -22,6 +23,7 @@ const Dashboard = () => {
           count={2}
           statusText="On Discuss"
         />
+        <ProjectAnalysis />
       </div>
     </>
   );
