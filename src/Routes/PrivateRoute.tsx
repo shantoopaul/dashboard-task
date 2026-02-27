@@ -6,7 +6,7 @@ interface PrivateRouteProps {
   children: ReactNode;
 }
 
-export default function PrivateRoute({ children }: PrivateRouteProps) {
+const PrivateRoute = ({ children }: PrivateRouteProps) => {
   const { user } = useAuth();
 
   if (!user) {
@@ -14,4 +14,6 @@ export default function PrivateRoute({ children }: PrivateRouteProps) {
   }
 
   return children;
-}
+};
+
+export default PrivateRoute;

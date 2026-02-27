@@ -4,7 +4,7 @@ import { loginUser } from "../api/auth";
 import { useAuth } from "../Hooks/useAuth";
 import axios from "axios";
 
-export default function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -93,4 +93,6 @@ export default function Login() {
       </form>
     </div>
   );
-}
+};
+
+export default Login;

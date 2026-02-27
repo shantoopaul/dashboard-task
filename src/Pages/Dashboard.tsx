@@ -5,6 +5,7 @@ import ProjectProgress from "../Components/ProjectProgress";
 import Projects from "../Components/Projects";
 import ReminderCard from "../Components/ReminderCard";
 import TeamCollaboration from "../Components/TeamCollaboration";
+import TimeTracker from "../Components/TimeTracker";
 
 const Dashboard = () => {
   return (
@@ -32,6 +33,7 @@ const Dashboard = () => {
         <Projects />
         <TeamCollaboration />
         <ProjectProgress completed={30} inProgress={11} pending={59} />
+        <TimeTracker />
       </div>
     </>
   );

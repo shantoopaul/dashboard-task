@@ -34,7 +34,7 @@ const projects: ProjectItem[] = [
   },
 ];
 
-function Projects() {
+const Projects = () => {
   return (
     <div className="col-span-3 rounded-2xl bg-white p-4">
       <div className="mb-4 flex items-center justify-between">
@@ -68,6 +68,6 @@ function Projects() {
       </div>
     </div>
   );
-}
+};
 
 export default Projects;

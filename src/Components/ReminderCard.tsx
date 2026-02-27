@@ -1,6 +1,6 @@
 import { Video } from "lucide-react";
 
-function ReminderCard() {
+const ReminderCard = () => {
   return (
     <div className="col-span-3 rounded-2xl bg-white p-4 h-full flex flex-col">
       <p className="text-xl font-medium text-gray-800 mb-4">Reminders</p>
@@ -15,6 +15,6 @@ function ReminderCard() {
       </button>
     </div>
   );
-}
+};
 
 export default ReminderCard;
