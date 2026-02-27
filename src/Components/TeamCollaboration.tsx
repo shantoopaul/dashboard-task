@@ -44,49 +44,44 @@ const statusStyles: Record<Status, string> = {
 
 const TeamCollaboration: React.FC = () => {
   return (
-    <div className="bg-white flex items-center justify-center p-4 w-full md:w-125 rounded-2xl">
-      <div className="w-full max-w-2xl bg-white rounded-2xl p-6">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-gray-800">
-            Team Collaboration
-          </h2>
-          <button className="flex items-center gap-2 border border-green2 text-green2 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-green-50 transition">
-            + Add Member
-          </button>
-        </div>
+    <div className="bg-white flex flex-col items-center justify-center p-4 col-span-5 rounded-2xl">
+      {/* w-full max-w-2xl bg-white rounded-2xl p-6 */}
+      <div className="flex items-center justify-between w-full mb-6">
+        <h2 className="text-xl font-semibold text-gray-800">
+          Team Collaboration
+        </h2>
+        <button className="flex items-center gap-2 border border-green2 text-green2 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-green-50 transition">
+          + Add Member
+        </button>
+      </div>
+      <div className="space-y-5 w-full">
+        {members.map((member) => (
+          <div key={member.id} className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <img
+                src={`https://i.pravatar.cc/150?img=${member.id + 10}`}
+                alt={member.name}
+                className="w-12 h-12 rounded-full object-cover"
+              />
 
-        <div className="space-y-5">
-          {members.map((member) => (
-            <div key={member.id} className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <img
-                  src={`https://i.pravatar.cc/150?img=${member.id + 10}`}
-                  alt={member.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-800">
-                    {member.name}
-                  </h3>
-                  <p className="text-xs text-gray-500">
-                    Working on{" "}
-                    <span className="font-medium text-gray-700">
-                      {member.task}
-                    </span>
-                  </p>
-                </div>
+              <div>
+                <h3 className="font-semibold text-gray-800">{member.name}</h3>
+                <p className="text-xs text-gray-500">
+                  Working on{" "}
+                  <span className="font-medium text-gray-700">
+                    {member.task}
+                  </span>
+                </p>
               </div>
-
-              <span
-                className={`text-[10px] px-2 py-1 rounded-full font-medium ${statusStyles[member.status]}`}
-              >
-                {member.status}
-              </span>
             </div>
-          ))}
-        </div>
+
+            <span
+              className={`text-[10px] px-2 py-1 rounded-full font-medium ${statusStyles[member.status]}`}
+            >
+              {member.status}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
