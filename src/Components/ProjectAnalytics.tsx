@@ -1,5 +1,3 @@
-import React from "react";
-
 type ActivityLevel = "high" | "mid" | "low" | "none";
 
 type DayData = {

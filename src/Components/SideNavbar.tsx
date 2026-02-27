@@ -18,6 +18,7 @@ import SettingsIcon from "../assets/settings.svg?react";
 import HelpIcon from "../assets/help.svg?react";
 // @ts-expect-error ts-ignore
 import LogoutIcon from "../assets/logout.svg?react";
+import MobileAppPromo from "./MobileAppPromo";
 
 const icons = {
   dashboard: DashboardIcon,
@@ -165,16 +166,7 @@ const Sidebar = () => {
           </ul>
         </nav>
 
-        <div
-          className="bg-[url('/mobileAdBg.png')] bg-cover bg-center rounded-2xl p-6 text-white mt-auto"
-          role="complementary"
-          aria-label="Mobile App Promotion"
-        >
-          <p className="text-sm mb-4">Download our Mobile App</p>
-          <button className="bg-green2 w-full py-2 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-            Download
-          </button>
-        </div>
+        <MobileAppPromo />
       </aside>
 
       {isOpen && (

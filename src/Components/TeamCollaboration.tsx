@@ -1,5 +1,3 @@
-import React from "react";
-
 type Status = "Completed" | "In Progress" | "Pending";
 
 interface TeamMember {
