@@ -42,7 +42,7 @@ const TimeTracker = () => {
   };
 
   return (
-    <div className="rounded-2xl overflow-hidden relative">
+    <div className="col-span-1 lg:col-span-3 xl:col-span-4 row-span-6 h-full flex flex-col justify-center rounded-2xl overflow-hidden relative">
       <img
         src="/timeTrackerBg.png"
         alt="Time Tracker Background"

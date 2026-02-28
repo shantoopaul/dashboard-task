@@ -5,10 +5,13 @@ import Users from "../Components/Users";
 import ReminderCard from "../Components/ReminderCard";
 import Products from "../Components/Products";
 import { useEffect, useState } from "react";
+import ProjectProgress from "../Components/ProjectProgress";
+import TimeTracker from "../Components/TimeTracker";
 import {
   getDashboardData,
   type DashboardOverview,
   type DashboardUser,
+  type DashboardAnalytics,
 } from "../api/dashboard";
 
 interface DashboardProduct {
@@ -24,6 +27,7 @@ const Dashboard = () => {
   const [users, setUsers] = useState<DashboardUser[]>([]);
   const [products, setProducts] = useState<DashboardProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const [analytics, setAnalytics] = useState<DashboardAnalytics[]>([]);
 
   useEffect(() => {
     const fetchDashboard = async () => {
@@ -32,6 +36,7 @@ const Dashboard = () => {
         setOverview(data.overview);
         setUsers(data.users);
         setProducts(data.products ?? []);
+        setAnalytics(data.analytics ?? []);
       } catch (error) {
         console.error("Dashboard fetch error:", error);
       } finally {
@@ -43,6 +48,14 @@ const Dashboard = () => {
 
   if (loading) return <div className="p-10">Loading dashboard...</div>;
   if (!overview) return <div className="p-10">Failed to load dashboard.</div>;
+
+  const totalConversions = analytics.reduce((sum, a) => sum + a.conversions, 0);
+  const totalClicks =
+    analytics.reduce((sum, a) => sum + a.clicks, 0) - totalConversions;
+  const totalViews =
+    analytics.reduce((sum, a) => sum + a.views, 0) -
+    totalClicks -
+    totalConversions;
 
   return (
     <>
@@ -68,8 +81,12 @@ const Dashboard = () => {
         <ReminderCard />
         <Users users={users} />
         <Products products={products} />
-        {/* <ProjectProgress completed={30} inProgress={11} pending={59} />
-        <TimeTracker /> */}
+        <ProjectProgress
+          completed={totalConversions}
+          inProgress={totalClicks}
+          pending={totalViews}
+        />
+        <TimeTracker />
       </div>
     </>
   );

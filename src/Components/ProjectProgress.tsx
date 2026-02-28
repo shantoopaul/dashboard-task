@@ -15,16 +15,13 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
 }) => {
   const total = completed + inProgress + pending;
 
-  const completedPercent = completed / total;
-  const inProgressPercent = (completed + inProgress) / total;
-
-  const completedLength = completedPercent * CIRCUMFERENCE;
-  const inProgressLength = inProgressPercent * CIRCUMFERENCE;
+  const completedLength = (completed / total) * CIRCUMFERENCE;
+  const inProgressLength = ((completed + inProgress) / total) * CIRCUMFERENCE;
 
   const totalProgress = Math.round(((completed + inProgress) / total) * 100);
 
   return (
-    <div className="rounded-2xl bg-white p-4">
+    <div className="col-span-1 lg:col-span-3 xl:col-span-4 row-span-9 h-full flex flex-col justify-center rounded-2xl bg-white p-4">
       <h3 className="text-xl font-medium text-gray-800">Project Progress</h3>
 
       <div className="relative flex items-center justify-center">
@@ -59,7 +56,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
             fill="none"
             stroke="#1B5E3C"
             strokeWidth={STROKE}
-            strokeDasharray={`${inProgressLength} ${CIRCUMFERENCE}`}
+            strokeDasharray={`${inProgressLength} ${CIRCUMFERENCE * 2}`}
             strokeLinecap="round"
             className="transition-all duration-700"
           />
@@ -69,7 +66,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
             fill="none"
             stroke="#2F855A"
             strokeWidth={STROKE}
-            strokeDasharray={`${completedLength} ${CIRCUMFERENCE}`}
+            strokeDasharray={`${completedLength} ${CIRCUMFERENCE * 2}`}
             strokeLinecap="round"
             className="transition-all duration-700"
           />
