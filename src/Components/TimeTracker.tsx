@@ -49,8 +49,6 @@ const TimeTracker = () => {
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px]" />
-
       <div className="relative z-10 flex flex-col justify-between h-full p-4 text-white">
         <h3 className="text-xl font-medium">Time Tracker</h3>
 

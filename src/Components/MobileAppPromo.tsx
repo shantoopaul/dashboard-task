@@ -6,7 +6,6 @@ const MobileAppPromo: React.FC = () => {
       role="complementary"
       aria-label="Mobile App Promotion"
     >
-      <div className="absolute inset-0 bg-black/40 rounded-2xl" />
       <div className="relative z-10 flex flex-col h-full">
         <div className="w-6 h-6 flex items-center justify-center rounded-full bg-white mb-2">
           <Award size={16} className="text-green2" />
