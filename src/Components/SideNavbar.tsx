@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Hooks/useAuth";
 // @ts-expect-error ts-ignore
@@ -36,20 +36,19 @@ type MenuItemType = {
   label: string;
   path: string;
   badge?: string;
-  active?: boolean;
 };
 
 const mainMenuItems: MenuItemType[] = [
-  { icon: "dashboard", label: "Dashboard", path: "/dashboard", active: true },
-  { icon: "tasks", label: "Tasks", path: "/tasks", badge: "12+" },
-  { icon: "calendar", label: "Calendar", path: "/calendar" },
-  { icon: "analytics", label: "Analytics", path: "/analytics" },
-  { icon: "team", label: "Team", path: "/team" },
+  { icon: "dashboard", label: "Dashboard", path: "/dashboard" },
+  { icon: "tasks", label: "Tasks", path: "/dashboard/tasks", badge: "12+" },
+  { icon: "calendar", label: "Calendar", path: "/dashboard/calendar" },
+  { icon: "analytics", label: "Analytics", path: "/dashboard/analytics" },
+  { icon: "team", label: "Team", path: "/dashboard/team" },
 ];
 
 const generalMenuItems: MenuItemType[] = [
-  { icon: "settings", label: "Settings", path: "/settings" },
-  { icon: "help", label: "Help", path: "/help" },
+  { icon: "settings", label: "Settings", path: "/dashboard/settings" },
+  { icon: "help", label: "Help", path: "/dashboard/help" },
   { icon: "logout", label: "Logout", path: "/logout" },
 ];
 
@@ -61,47 +60,57 @@ const MenuItem = ({
   onLogout?: () => void;
 }) => {
   const Icon = icons[item.icon];
-  const isActive = item.active;
-
   const isLogout = item.label === "Logout";
 
   return (
     <li className="relative">
-      {isActive && (
-        <span className="absolute -left-6 top-1/2 -translate-y-1/2 h-12 w-2 bg-green2 rounded-r-full" />
-      )}
-
       {isLogout ? (
         <button
           onClick={onLogout}
-          className="w-full flex items-center justify-between py-2 text-gray-400 hover:bg-gray-200"
+          className="group w-full flex items-center justify-between py-2 text-gray-400 hover:text-green2 transition-colors"
         >
           <span className="flex items-center gap-3">
-            <Icon className="w-6 h-6 text-gray-400" />
+            <Icon className="w-6 h-6 text-gray-400 group-hover:text-green2 transition-colors" />
             <span className="text-xl">{item.label}</span>
           </span>
         </button>
       ) : (
-        <Link
+        <NavLink
           to={item.path}
-          className={`w-full flex items-center justify-between py-2 
-          ${isActive ? "font-semibold" : "text-gray-400 hover:bg-gray-200"}`}
+          end
+          className={({ isActive }) =>
+            `group w-full flex items-center justify-between py-2 transition-colors ${
+              isActive
+                ? "font-semibold text-green3"
+                : "text-gray-400 hover:text-green2"
+            }`
+          }
         >
-          <span className="flex items-center gap-3">
-            <Icon
-              className={`w-6 h-6 ${
-                isActive ? "text-green3" : "text-gray-400"
-              }`}
-            />
-            <span className="text-xl">{item.label}</span>
-          </span>
+          {({ isActive }) => (
+            <>
+              {isActive && (
+                <span className="absolute -left-6 top-1/2 -translate-y-1/2 h-12 w-2 bg-green2 rounded-r-full" />
+              )}
 
-          {item.badge && (
-            <span className="text-[10px] px-2 py-0.5 rounded-md bg-green3 text-white">
-              {item.badge}
-            </span>
+              <span className="flex items-center gap-3">
+                <Icon
+                  className={`w-6 h-6 transition-colors ${
+                    isActive
+                      ? "text-green3"
+                      : "text-gray-400 group-hover:text-green2"
+                  }`}
+                />
+                <span className="text-xl">{item.label}</span>
+              </span>
+
+              {item.badge && (
+                <span className="text-[10px] px-2 py-0.5 rounded-md bg-green3 text-white">
+                  {item.badge}
+                </span>
+              )}
+            </>
           )}
-        </Link>
+        </NavLink>
       )}
     </li>
   );
@@ -134,14 +143,14 @@ const Sidebar = () => {
         lg:translate-x-0`}
         aria-label="Sidebar Navigation"
       >
-        <Link to="/dashboard" className="flex items-center gap-3">
+        <NavLink to="/dashboard" className="flex items-center gap-3">
           <img
             src="brandLogo.png"
             alt="Donezo Logo"
             className="w-12 h-12 object-contain"
           />
           <span className="text-xl font-bold">Donezo</span>
-        </Link>
+        </NavLink>
 
         <nav aria-label="Main Menu">
           <p className="text-xs text-gray-400 uppercase mb-4">Menu</p>
