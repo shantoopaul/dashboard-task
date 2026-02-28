@@ -6,34 +6,63 @@ import Projects from "../Components/Projects";
 import ReminderCard from "../Components/ReminderCard";
 import TeamCollaboration from "../Components/TeamCollaboration";
 import TimeTracker from "../Components/TimeTracker";
+import { useEffect, useState } from "react";
+import { getDashboardData, type DashboardOverview } from "../api/dashboard";
 
 const Dashboard = () => {
+  const [overview, setOverview] = useState<DashboardOverview | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDashboard = async () => {
+      try {
+        const data = await getDashboardData();
+        setOverview(data.overview);
+      } catch (error) {
+        console.error("Dashboard fetch error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboard();
+  }, []);
+
+  if (loading) {
+    return <div className="p-10">Loading dashboard...</div>;
+  }
+
+  if (!overview) {
+    return <div className="p-10">Failed to load dashboard.</div>;
+  }
   return (
     <>
       <DashTopStuff />
-      <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 auto-rows-[48px]">
+      <div className=" grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-12 auto-rows-[20px] lg:auto-rows-[24px]">
         <MetricsCard
-          title="Total Projects"
-          count={24}
-          change={5}
+          title="Total Users"
+          count={overview.totalUsers}
+          change={overview.growth}
           variant="primary"
         />
 
-        <MetricsCard title="Ended Projects" count={10} change={6} />
-
-        <MetricsCard title="Running Projects" count={12} change={2} />
+        <MetricsCard
+          title="Active Users"
+          count={overview.activeUsers}
+          change={overview.growth}
+        />
 
         <MetricsCard
-          title="Pending Project"
-          count={2}
-          statusText="On Discuss"
+          title="Revenue"
+          count={overview.revenue}
+          statusText="This month revenue"
         />
         <ProjectAnalysis />
         <ReminderCard />
-        <Projects />
+        {/* <Projects />
         <TeamCollaboration />
         <ProjectProgress completed={30} inProgress={11} pending={59} />
-        <TimeTracker />
+        <TimeTracker /> */}
       </div>
     </>
   );

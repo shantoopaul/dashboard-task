@@ -33,7 +33,7 @@ const ProjectAnalytics: React.FC = () => {
   const maxValue = Math.max(...data.map((d) => d.value));
 
   return (
-    <div className="bg-white rounded-3xl p-4 col-span-6 row-span-4 flex flex-col">
+    <div className="col-span-1 lg:col-span-4 xl:col-span-5 row-span-7 sm:row-span-5 lg:row-span-7 h-full justify-center bg-white rounded-3xl p-4 flex flex-col">
       <h3 className="text-xl font-medium text-gray-800 mb-2">
         Project Analytics
       </h3>
@@ -45,9 +45,9 @@ const ProjectAnalytics: React.FC = () => {
           return (
             <div
               key={index}
-              className="flex flex-col items-center gap-3 flex-1"
+              className="flex flex-col items-center gap-2 flex-1 min-w-0 self-stretch"
             >
-              <div className="relative w-16 h-32 flex items-end group">
+              <div className="relative w-full max-w-12 mx-auto min-h-20 flex-1 flex items-end group">
                 <div
                   className="absolute -top-8 left-1/2 -translate-x-1/2 
                                 opacity-0 group-hover:opacity-100

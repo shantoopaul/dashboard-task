@@ -42,7 +42,7 @@ const statusStyles: Record<Status, string> = {
 
 const TeamCollaboration: React.FC = () => {
   return (
-    <div className="bg-white flex flex-col items-center justify-center p-4 col-span-5 row-span-5 rounded-2xl">
+    <div className="bg-white flex flex-col items-center justify-center p-4 rounded-2xl">
       {/* w-full max-w-2xl bg-white rounded-2xl p-6 */}
       <div className="flex items-center justify-between w-full mb-4">
         <h3 className="text-xl font-medium text-gray-800">

@@ -12,7 +12,7 @@ const Topbar = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
       >
         <Menu size={24} />
       </button>
-      <div className="relative w-full max-w-sm group">
+      <div className="relative w-full max-w-sm group hidden sm:block">
         <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
           <Search className="h-6 w-6 text-gray-800 group-focus-within:text-green2 transition-colors" />
         </div>
@@ -43,7 +43,7 @@ const Topbar = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div>
+        <div className="hidden md:flex flex-col">
           <h4 className="font-bold text-gray-800 leading-tight">
             {user?.name}
           </h4>

@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { formatNumber } from "../utils/format";
 
 interface MetricsCardProps {
   title: string;
@@ -22,7 +23,7 @@ const MetricsCard = ({
   return (
     <section
       className={`
-        col-span-3 row-span-3 rounded-2xl p-4 transition-all duration-300
+        col-span-1 lg:col-span-2 xl:col-span-4 row-span-5 h-full flex flex-col justify-center rounded-2xl p-4 transition-all duration-300
         ${
           isPrimary
             ? "bg-linear-to-b from-green3 to-green2 text-white"
@@ -52,9 +53,9 @@ const MetricsCard = ({
       </div>
 
       <h3
-        className={`mt-2 text-6xl font-medium ${isPrimary ? "text-white" : "text-black"}`}
+        className={`mt-2 text-4xl lg:text-5xl font-medium ${isPrimary ? "text-white" : "text-black"}`}
       >
-        {count}
+        {formatNumber(count)}
       </h3>
 
       <div className="mt-4 flex items-center gap-2">

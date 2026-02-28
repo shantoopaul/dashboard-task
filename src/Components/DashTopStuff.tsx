@@ -13,11 +13,11 @@ const DashTopStuff = () => {
       </div>
 
       <div className="flex items-center gap-3">
-        <button className="flex items-center gap-2 bg-linear-to-b from-green3 to-green2 text-white px-8 py-4 rounded-full border-2 border-green2 hover:opacity-90 transition-all font-medium">
+        <button className="flex items-center gap-2 bg-linear-to-b from-green3 to-green2 text-white px-4 py-2 sm:px-8 sm:py-4 rounded-full border-2 border-green2 hover:opacity-90 transition-all font-medium">
           <Plus size={20} />
           <span>Add Project</span>
         </button>
-        <button className="bg-white text-green3 px-8 py-4 rounded-full border-2 border-green2 hover:bg-green2 hover:text-white transition-all font-medium">
+        <button className="bg-white text-green3 px-4 py-2 sm:px-8 sm:py-4 rounded-full border-2 border-green2 hover:bg-green2 hover:text-white transition-all font-medium">
           Import Data
         </button>
       </div>
