@@ -4,3 +4,4 @@ developApiEndpoint: https://www.linkedin.com/company/theupskillclub/?originalSub
 For the other icons that I couldn't find I used this AI to upscale the icons: https://www.iloveimg.com/upscale-image
 For the background images I used this AI to remove the text and icons and upscale the images: https://notegpt.io/remove-text-from-image
 For the dashboard navbar icons I used: https://www.svgrepo.com/
+Login Page Bg: https://wallpapersden.com/windows-11-4k-green-glow-wallpaper/

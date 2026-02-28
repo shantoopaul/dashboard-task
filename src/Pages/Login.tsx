@@ -43,71 +43,79 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-green2 to-green3 px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-sm bg-white rounded-2xl shadow-xl p-8 space-y-6"
-      >
-        <h2 className="text-2xl font-bold text-center text-gray-800">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/loginPageBg.jpg')" }}
+    >
+      <div className="relative w-87.5 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-10 pt-8 pb-12 text-center shadow-2xl">
+        <div className="flex flex-col items-center mb-6">
+          <img
+            src="/brandLogo.png"
+            alt="Donezo Logo"
+            className="w-16 h-16 object-cover rounded-full mb-3 shadow-md"
+          />
+          <h1 className="text-white text-3xl font-semibold tracking-wide">
+            Donezo
+          </h1>
+        </div>
+
+        <h2 className="text-white font-medium uppercase tracking-[5px] text-xl mt-2">
           Welcome Back
         </h2>
 
-        {error && (
-          <div className="bg-red-50 border border-red-300 text-red-600 text-sm rounded-lg px-4 py-2">
-            {error}
+        <form onSubmit={handleSubmit} className="mt-8 text-left space-y-4">
+          <div>
+            <label className="block text-white mb-1 text-lg tracking-wide">
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError(null);
+              }}
+              required
+              className="w-full h-10 px-4 rounded-lg text-white text-lg bg-white/5 backdrop-blur-md placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/40"
+            />
           </div>
-        )}
 
-        <div className="space-y-4">
+          <div>
+            <label className="block text-white mb-1 text-lg tracking-wide">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError(null);
+              }}
+              required
+              className="w-full h-10 px-4 rounded-lg text-white text-lg bg-white/5 backdrop-blur-md placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/40"
+            />
+          </div>
+
+          <div className="flex items-center gap-2 text-white">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+              className="accent-green2"
+            />
+            <span>Remember Me</span>
+          </div>
+
           <input
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setError(null);
-            }}
-            required
-            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition ${
-              error
-                ? "border-red-400 focus:ring-red-400"
-                : "border-gray-300 focus:ring-indigo-500"
-            }`}
+            type="submit"
+            value={loading ? "Signing in..." : "Sign In"}
+            disabled={loading}
+            className="flex w-full bg-linear-to-b from-green3 to-green2 text-white px-8 py-4 rounded-full border-2 border-green2 hover:opacity-90 transition-all font-medium text-xl"
           />
 
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setError(null);
-            }}
-            required
-            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition ${
-              error
-                ? "border-red-400 focus:ring-red-400"
-                : "border-gray-300 focus:ring-indigo-500"
-            }`}
-          />
-        </div>
-        <div className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={rememberMe}
-            onChange={() => setRememberMe(!rememberMe)}
-          />
-          <label className="text-sm">Remember Me</label>
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full py-3 rounded-full bg-green2 text-white font-semibold hover:bg-green3 active:scale-[0.98] transition disabled:bg-bg-gray disabled:cursor-not-allowed"
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
+          {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
+        </form>
+      </div>
     </div>
   );
 };
