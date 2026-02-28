@@ -3,11 +3,16 @@ import Login from "../Pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import DashLayout from "../Layouts/DashLayout";
 import Dashboard from "../Pages/Dashboard";
+import PublicRoute from "./PublicRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    element: (
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    ),
   },
   {
     path: "dashboard",

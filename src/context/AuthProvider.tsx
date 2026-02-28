@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { AuthContext, type User } from "./AuthContext";
 import { getUserById } from "../api/user";
+import { isTokenExpired } from "../utils/token";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -8,15 +9,30 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(() => {
-    const storedUser = localStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : null;
+    const storedUser =
+      localStorage.getItem("user") || sessionStorage.getItem("user");
+
+    if (!storedUser) return null;
+
+    const parsedUser: User = JSON.parse(storedUser);
+
+    if (parsedUser.token && isTokenExpired(parsedUser.token)) {
+      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
+      return null;
+    }
+
+    return parsedUser;
   });
 
-  const login = async (userData: {
-    id: number;
-    email: string;
-    token: string;
-  }) => {
+  const login = async (
+    userData: {
+      id: number;
+      email: string;
+      token: string;
+    },
+    remember: boolean,
+  ) => {
     try {
       const profile = await getUserById(userData.id);
 
@@ -26,7 +42,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       };
 
       setUser(fullUser);
-      localStorage.setItem("user", JSON.stringify(fullUser));
+
+      if (remember) {
+        localStorage.setItem("user", JSON.stringify(fullUser));
+      } else {
+        sessionStorage.setItem("user", JSON.stringify(fullUser));
+      }
     } catch (error) {
       console.error(error);
     }
@@ -35,6 +56,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
   };
 
   return (

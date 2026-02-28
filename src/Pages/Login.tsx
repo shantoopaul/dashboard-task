@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/auth";
 import { useAuth } from "../Hooks/useAuth";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("user1@example.com");
+  const [password, setPassword] = useState("password123");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [rememberMe, setRememberMe] = useState(true);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -20,13 +22,20 @@ const Login = () => {
 
     try {
       const data = await loginUser(email, password);
-      login(data);
+      await login(data, rememberMe);
       navigate("/dashboard");
+      toast.success("Login successful!");
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
-        setError(error.response?.data?.message || "Invalid email or password.");
+        if (error.response?.status === 401) {
+          toast.error("Invalid email or password");
+        } else if (error.response?.status === 500) {
+          toast.error("Server error. Please try again later.");
+        } else {
+          toast.error("Unexpected error occurred");
+        }
       } else {
-        setError("Something went wrong. Please try again.");
+        toast.error("Something went wrong");
       }
     } finally {
       setLoading(false);
@@ -81,6 +90,14 @@ const Login = () => {
                 : "border-gray-300 focus:ring-indigo-500"
             }`}
           />
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={rememberMe}
+            onChange={() => setRememberMe(!rememberMe)}
+          />
+          <label className="text-sm">Remember Me</label>
         </div>
 
         <button

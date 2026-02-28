@@ -11,11 +11,14 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (userData: {
-    id: number;
-    email: string;
-    token: string;
-  }) => Promise<void>;
+  login: (
+    userData: {
+      id: number;
+      email: string;
+      token: string;
+    },
+    remember: boolean,
+  ) => Promise<void>;
   logout: () => void;
 }
 

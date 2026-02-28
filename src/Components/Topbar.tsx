@@ -32,7 +32,7 @@ const Topbar = () => {
 
         <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
           <img
-            src="https://i.pravatar.cc/300"
+            src={`https://i.pravatar.cc/300?u=${user?.name?.split(" ")[0].toLowerCase()}`}
             alt="User Avatar"
             className="w-full h-full object-cover"
           />
