@@ -1,11 +1,9 @@
 import DashTopStuff from "../Components/DashTopStuff";
 import MetricsCard from "../Components/MetricsCard";
 import ProjectAnalysis from "../Components/ProjectAnalytics";
-import ProjectProgress from "../Components/ProjectProgress";
 import Users from "../Components/Users";
 import ReminderCard from "../Components/ReminderCard";
-import TeamCollaboration from "../Components/TeamCollaboration";
-import TimeTracker from "../Components/TimeTracker";
+import Products from "../Components/Products";
 import { useEffect, useState } from "react";
 import {
   getDashboardData,
@@ -13,9 +11,18 @@ import {
   type DashboardUser,
 } from "../api/dashboard";
 
+interface DashboardProduct {
+  id: number;
+  name: string;
+  price: number;
+  sales: number;
+  category: string;
+}
+
 const Dashboard = () => {
   const [overview, setOverview] = useState<DashboardOverview | null>(null);
   const [users, setUsers] = useState<DashboardUser[]>([]);
+  const [products, setProducts] = useState<DashboardProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,6 +31,7 @@ const Dashboard = () => {
         const data = await getDashboardData();
         setOverview(data.overview);
         setUsers(data.users);
+        setProducts(data.products ?? []);
       } catch (error) {
         console.error("Dashboard fetch error:", error);
       } finally {
@@ -33,13 +41,8 @@ const Dashboard = () => {
     fetchDashboard();
   }, []);
 
-  if (loading) {
-    return <div className="p-10">Loading dashboard...</div>;
-  }
-
-  if (!overview) {
-    return <div className="p-10">Failed to load dashboard.</div>;
-  }
+  if (loading) return <div className="p-10">Loading dashboard...</div>;
+  if (!overview) return <div className="p-10">Failed to load dashboard.</div>;
 
   return (
     <>
@@ -64,8 +67,8 @@ const Dashboard = () => {
         <ProjectAnalysis />
         <ReminderCard />
         <Users users={users} />
-        {/* <TeamCollaboration />
-        <ProjectProgress completed={30} inProgress={11} pending={59} />
+        <Products products={products} />
+        {/* <ProjectProgress completed={30} inProgress={11} pending={59} />
         <TimeTracker /> */}
       </div>
     </>
