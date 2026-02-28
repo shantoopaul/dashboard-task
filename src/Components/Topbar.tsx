@@ -1,11 +1,17 @@
-import { Search, Bell, Mail, Command } from "lucide-react";
+import { Search, Bell, Mail, Command, Menu } from "lucide-react";
 import { useAuth } from "../Hooks/useAuth";
 
-const Topbar = () => {
+const Topbar = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
   const { user } = useAuth();
 
   return (
     <header className="flex items-center justify-between w-full mb-2 rounded-2xl  bg-bg-gray px-4 py-5 ">
+      <button
+        onClick={toggleSidebar}
+        className="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+      >
+        <Menu size={24} />
+      </button>
       <div className="relative w-full max-w-sm group">
         <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
           <Search className="h-6 w-6 text-gray-800 group-focus-within:text-green2 transition-colors" />

@@ -2,7 +2,7 @@ import { Award } from "lucide-react";
 const MobileAppPromo: React.FC = () => {
   return (
     <div
-      className="relative overflow-hidden rounded-2xl p-3 text-white mt-auto bg-[url('/mobileAdBg.png')] bg-cover bg-center"
+      className="relative overflow-hidden rounded-2xl p-3 text-white bg-[url('/mobileAdBg.png')] bg-cover bg-center"
       role="complementary"
       aria-label="Mobile App Promotion"
     >

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Hooks/useAuth";
@@ -19,6 +18,7 @@ import HelpIcon from "../assets/help.svg?react";
 // @ts-expect-error ts-ignore
 import LogoutIcon from "../assets/logout.svg?react";
 import MobileAppPromo from "./MobileAppPromo";
+import { X } from "lucide-react";
 
 const icons = {
   dashboard: DashboardIcon,
@@ -116,8 +116,13 @@ const MenuItem = ({
   );
 };
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const SideNavbar = ({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -128,21 +133,16 @@ const Sidebar = () => {
 
   return (
     <>
-      <button
-        className="lg:hidden fixed top-4 left-4 z-50 bg-green2 text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green2"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle Sidebar"
-        aria-expanded={isOpen}
-      >
-        ☰
-      </button>
-
       <aside
-        className={`fixed lg:static rounded-2xl top-4 left-4 z-40 w-64 bg-bg-gray p-6 flex flex-col gap-12 transform transition-transform duration-300 
-        ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-        lg:translate-x-0`}
-        aria-label="Sidebar Navigation"
+        className={`fixed lg:static top-0 left-0 h-screen lg:h-auto z-50 w-64 bg-bg-gray p-6 flex flex-col gap-12 rounded-2xl overflow-y-auto transform transition-transform duration-300 ease-in-out
+        ${isOpen ? "translate-x-0 ml-4 my-4" : "-translate-x-full"} lg:translate-x-0 lg:ml-0 lg:my-0`}
       >
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-4 right-4 lg:hidden p-2 rounded-lg hover:bg-gray-100"
+        >
+          <X size={22} />
+        </button>
         <NavLink to="/dashboard" className="flex items-center gap-3">
           <img
             src="brandLogo.png"
@@ -175,7 +175,9 @@ const Sidebar = () => {
           </ul>
         </nav>
 
-        <MobileAppPromo />
+        <div className="mt-6 lg:mt-auto">
+          <MobileAppPromo />
+        </div>
       </aside>
 
       {isOpen && (
@@ -189,4 +191,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideNavbar;
